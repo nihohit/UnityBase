@@ -115,5 +115,25 @@ namespace Assets.Scripts.UnityBase {
       trans.offsetMin = trans.offsetMin - new Vector2(deltaSize.x * trans.pivot.x, deltaSize.y * trans.pivot.y);
       trans.offsetMax = trans.offsetMax + new Vector2(deltaSize.x * (1f - trans.pivot.x), deltaSize.y * (1f - trans.pivot.y));
     }
+
+    /**
+    * moves entity along its forward direction.
+    */
+    public static void MoveForwards(this GameObject entity, float speed) {
+      var movementSpeed = Time.deltaTime * speed;
+      var direction = entity.transform.rotation * Vector3.right;
+      entity.transform.position += direction * movementSpeed;
+    }
+
+    /**
+    * sets the rotation of the transform to face the given targetPosition.
+    */
+    public static void RotateTowards(this Transform toRotate, Vector3 targetPosition, float rotateSpeed) {
+      var offset = targetPosition - toRotate.position;
+      offset.z = 0;
+      float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+      Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+      toRotate.rotation = Quaternion.RotateTowards(toRotate.rotation, targetRotation, rotateSpeed);
+    }
   }
 }
