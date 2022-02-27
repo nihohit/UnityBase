@@ -84,6 +84,17 @@ namespace Assets.Scripts.Base {
       }
     }
 
+    public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> indexedOp) {
+      int index = 0;
+      if (enumerable == null) {
+        return;
+      }
+
+      foreach (var val in enumerable) {
+        indexedOp(val, index++);
+      }
+    }
+
     public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) {
       return enumerable.IsNullOrEmpty(pbj => true);
     }
