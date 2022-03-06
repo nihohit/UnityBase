@@ -27,6 +27,9 @@ namespace Assets.Scripts.UnityBase {
     public void UpdateTexture(string itemName, SpriteRenderer renderer, string resourceFolder) {
       if (!_textureDict.TryGetValue(itemName, out var newTexture)) {
         newTexture = Resources.Load<Texture2D>($"{resourceFolder}/{itemName}");
+        if (newTexture == null) {
+          throw new System.Exception($"Can't find texture {resourceFolder}/{itemName}");
+        }
         _textureDict[itemName] = newTexture;
       }
       ReplaceTexture(renderer, newTexture);
