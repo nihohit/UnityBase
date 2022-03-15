@@ -12,7 +12,7 @@ namespace Assets.Scripts.Base {
     /// <summary>
     /// The dummy object used for locking.
     /// </summary>
-    private static object s_lockObj;
+    private static readonly object s_lockObj;
 
     /// <summary>
     /// The single instance of the target class.

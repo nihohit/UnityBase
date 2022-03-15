@@ -27,8 +27,7 @@ namespace Assets.Scripts.Base {
 
     // try to get a value out of a dictionary, and if it doesn't exist, create it by a given method
     public static TValue TryGetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, Func<TValue> itemCreationMethod) {
-      TValue result;
-      if (dict.TryGetValue(key, out result)) {
+      if (dict.TryGetValue(key, out TValue result)) {
         return result;
       }
 
@@ -124,8 +123,7 @@ namespace Assets.Scripts.Base {
     }
 
     public static TVal Get<TKey, TVal>(this IDictionary<TKey, TVal> dict, TKey key, string dictionaryName = "") {
-      TVal value;
-      Assert.AssertConditionMet(dict.TryGetValue(key, out value), "{0} not found in {1}".FormatWith(key, dictionaryName), 2);
+      Assert.AssertConditionMet(dict.TryGetValue(key, out TVal value), "{0} not found in {1}".FormatWith(key, dictionaryName), 2);
 
       return value;
     }

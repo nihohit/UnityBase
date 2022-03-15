@@ -7,7 +7,7 @@ namespace Assets.Scripts.Base {
   /// Initializes a single Random object for the whole program, in order to overcome flaws in Random implementation.
   /// </summary>
   public static class Randomiser {
-    private static readonly Random sr_staticRandom = new Random();
+    private static readonly Random sr_staticRandom = new();
 
     public static int Next() {
       return sr_staticRandom.Next();
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Base {
     // choose a single value out of a collection
     public static T ChooseValue<T>(IEnumerable<T> group) {
       Assert.NotNull(group, "group");
-      T current = default(T);
+      T current = default;
       int count = 0;
       foreach (T element in group) {
         count++;

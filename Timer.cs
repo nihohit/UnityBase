@@ -92,7 +92,7 @@ namespace Assets.Scripts.UnityBase {
           TimeSpan.FromTicks(Convert.ToInt64(opResult.Value.Average())).TotalMilliseconds,
           TimeSpan.FromTicks(opResult.Value[opResult.Value.Count / 2]).TotalMilliseconds,
           TimeSpan.FromTicks(opResult.Value[0]).TotalMilliseconds,
-          TimeSpan.FromTicks(opResult.Value[opResult.Value.Count - 1]).TotalMilliseconds));
+          TimeSpan.FromTicks(opResult.Value[^1]).TotalMilliseconds));
       }
     }
   }
