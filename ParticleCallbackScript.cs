@@ -15,7 +15,6 @@ public class ParticleCallbackScript : MonoBehaviour {
   }
 
   public void OnParticleSystemStopped() {
-    Debug.Log(gameObject.name + " Calling callback");
     Callback(this);
   }
 
