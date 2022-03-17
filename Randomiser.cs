@@ -33,6 +33,10 @@ namespace Assets.Scripts.Base {
       return min + (sr_staticRandom.NextDouble() * (max - min));
     }
 
+    public static bool NextBool() {
+      return sr_staticRandom.Next(0, 1) != 0;
+    }
+
     // See if random sample comes lower than the given chance
     public static bool ProbabilityCheck(double chance) {
       Assert.EqualOrLesser(chance, 1, "we can't have a probablity higher than 1");
