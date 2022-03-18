@@ -125,13 +125,15 @@ namespace Assets.Scripts.UnityBase {
       entity.transform.position += direction * movementSpeed;
     }
 
+
+
     /**
     * sets the rotation of the transform to face the given targetPosition.
     */
-    public static void RotateTowards(this Transform toRotate, Vector3 targetPosition, float rotateSpeed) {
+    public static void RotateTowards(this Transform toRotate, Vector3 targetPosition, float rotateSpeed, float spreadAngleInDegrees = 0f) {
       var offset = targetPosition - toRotate.position;
       offset.z = 0;
-      float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+      float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg + spreadAngleInDegrees;
       Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
       toRotate.rotation = Quaternion.RotateTowards(toRotate.rotation, targetRotation, rotateSpeed);
     }
