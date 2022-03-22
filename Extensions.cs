@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Assets.Scripts.Base {
@@ -71,6 +72,11 @@ namespace Assets.Scripts.Base {
     public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> group) {
       Assert.NotNull(group, "group");
       return Randomiser.Shuffle(group);
+    }
+
+    public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IEnumerable<T> group) {
+      Assert.NotNull(group, "group");
+      return new ReadOnlyCollection<T>(group.ToList());
     }
 
     public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> op) {
