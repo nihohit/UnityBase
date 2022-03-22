@@ -34,7 +34,7 @@ namespace Assets.Scripts.Base {
     }
 
     public static bool NextBool() {
-      return sr_staticRandom.Next(0, 1) != 0;
+      return sr_staticRandom.Next(0, 2) != 0;
     }
 
     // See if random sample comes lower than the given chance
