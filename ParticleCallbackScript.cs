@@ -7,7 +7,7 @@ public class ParticleCallbackScript : MonoBehaviour {
   public Action<ParticleCallbackScript> Callback { get; set; }
 
   // Start is called before the first frame update
-  void Awake() {
+  protected void Awake() {
     particle = GetComponent<ParticleSystem>();
     particle.Pause();
     var main = particle.main;
