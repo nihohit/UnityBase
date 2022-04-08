@@ -39,8 +39,8 @@ namespace Assets.Scripts.Base {
 
     // See if random sample comes lower than the given chance
     public static bool ProbabilityCheck(double chance) {
-      Assert.EqualOrLesser(chance, 1, "we can't have a probablity higher than 1");
-      Assert.EqualOrGreater(chance, 0, "we can't have a probablity lower than 0");
+      Assert.EqualOrLesser(chance, 1, "we can't have a probability higher than 1");
+      Assert.EqualOrGreater(chance, 0, "we can't have a probability lower than 0");
       return NextDouble() <= chance;
     }
 
