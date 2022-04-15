@@ -137,19 +137,19 @@ namespace Assets.Scripts.UnityBase {
     }
 
     public static GameObject FindChild(this MonoBehaviour behavior, string childName) {
-      return behavior.transform.Find(childName).gameObject;
+      return behavior.transform.Find(childName)?.gameObject;
     }
 
     public static T FindInChild<T>(this MonoBehaviour behavior, string childName) where T : Component {
-      return behavior.transform.Find(childName).GetComponent<T>();
+      return behavior.transform.Find(childName)?.GetComponent<T>();
     }
 
     public static GameObject FindChild(this GameObject behavior, string childName) {
-      return behavior.transform.Find(childName).gameObject;
+      return behavior.transform.Find(childName)?.gameObject;
     }
 
     public static T FindInChild<T>(this GameObject behavior, string childName) where T : Component {
-      return behavior.transform.Find(childName).GetComponent<T>();
+      return behavior.transform.Find(childName)?.GetComponent<T>();
     }
   }
 }
