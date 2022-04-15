@@ -125,8 +125,6 @@ namespace Assets.Scripts.UnityBase {
       entity.transform.position += direction * movementSpeed;
     }
 
-
-
     /**
     * sets the rotation of the transform to face the given targetPosition.
     */
@@ -136,6 +134,22 @@ namespace Assets.Scripts.UnityBase {
       float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg + spreadAngleInDegrees;
       Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
       toRotate.rotation = Quaternion.RotateTowards(toRotate.rotation, targetRotation, rotateSpeed);
+    }
+
+    public static GameObject FindChild(this MonoBehaviour behavior, string childName) {
+      return behavior.transform.Find(childName).gameObject;
+    }
+
+    public static T FindInChild<T>(this MonoBehaviour behavior, string childName) where T : Component {
+      return behavior.transform.Find(childName).GetComponent<T>();
+    }
+
+    public static GameObject FindChild(this GameObject behavior, string childName) {
+      return behavior.transform.Find(childName).gameObject;
+    }
+
+    public static T FindInChild<T>(this GameObject behavior, string childName) where T : Component {
+      return behavior.transform.Find(childName).GetComponent<T>();
     }
   }
 }
