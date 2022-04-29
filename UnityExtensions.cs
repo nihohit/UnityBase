@@ -69,6 +69,10 @@ namespace Assets.Scripts.UnityBase {
       return Vector3.Distance(point, Vector3.zero);
     }
 
+    public static float Distance(this GameObject obj, GameObject other) {
+      return Vector3.Distance(obj.transform.position, other.transform.position);
+    }
+
     public static float Distance(this Vector2 point) {
       return Vector2.Distance(point, Vector2.zero);
     }
