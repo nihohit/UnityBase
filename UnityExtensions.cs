@@ -155,5 +155,9 @@ namespace Assets.Scripts.UnityBase {
     public static T FindInChild<T>(this GameObject behavior, string childName) where T : Component {
       return behavior.transform.Find(childName)?.GetComponent<T>();
     }
+
+    public static void SetParent(this GameObject obj, GameObject parent) {
+      obj.transform.parent = parent.transform;
+    }
   }
 }
