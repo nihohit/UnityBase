@@ -7,22 +7,22 @@ namespace Assets.Scripts.Base {
   /// Initializes a single Random object for the whole program, in order to overcome flaws in Random implementation.
   /// </summary>
   public static class Randomiser {
-    private static readonly Random sr_staticRandom = new();
+    private static readonly Random staticRandom = new();
 
     public static int Next() {
-      return sr_staticRandom.Next();
+      return staticRandom.Next();
     }
 
     public static int Next(int maxValue) {
-      return sr_staticRandom.Next(maxValue);
+      return staticRandom.Next(maxValue);
     }
 
     public static int Next(int minValue, int maxValue) {
-      return sr_staticRandom.Next(minValue, maxValue);
+      return staticRandom.Next(minValue, maxValue);
     }
 
     public static double NextDouble() {
-      return sr_staticRandom.NextDouble();
+      return staticRandom.NextDouble();
     }
 
     public static double NextDouble(double max) {
@@ -30,11 +30,11 @@ namespace Assets.Scripts.Base {
     }
 
     public static double NextDouble(double min, double max) {
-      return min + (sr_staticRandom.NextDouble() * (max - min));
+      return min + (staticRandom.NextDouble() * (max - min));
     }
 
     public static bool NextBool() {
-      return sr_staticRandom.Next(0, 2) != 0;
+      return staticRandom.Next(0, 2) != 0;
     }
 
     // See if random sample comes lower than the given chance
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Base {
       int count = 0;
       foreach (T element in group) {
         count++;
-        if (sr_staticRandom.Next(count) == 0) {
+        if (staticRandom.Next(count) == 0) {
           current = element;
         }
       }
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Base {
       var buffer = group.ToList();
 
       for (int i = 0; i < buffer.Count; i++) {
-        int j = sr_staticRandom.Next(i, buffer.Count);
+        int j = staticRandom.Next(i, buffer.Count);
         yield return buffer[j];
         buffer[j] = buffer[i];
       }

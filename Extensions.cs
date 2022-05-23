@@ -101,7 +101,7 @@ namespace Assets.Scripts.Base {
     }
 
     public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) {
-      return enumerable.IsNullOrEmpty(pbj => true);
+      return enumerable.IsNullOrEmpty(_ => true);
     }
 
     public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable, Func<T, bool> op) {
@@ -162,19 +162,19 @@ namespace Assets.Scripts.Base {
   /// Notice that for good hashing, all values must be from immutable fields.
   /// </summary>
   public static class Hasher {
-    private const int c_initialHash = 53; // Prime number
-    private const int c_multiplier = 29; // Different prime number
+    private const int INITIAL_HASH = 53; // Prime number
+    private const int MULTIPLIER = 29; // Different prime number
 
     public static int GetHashCode(params object[] values) {
       unchecked {
         // Overflow is fine, just wrap
-        int hash = c_initialHash;
+        int hash = INITIAL_HASH;
 
         if (values != null) {
           hash = values.Aggregate(
             hash,
             (current, currentObject) =>
-              (current * c_multiplier) + (currentObject != null ? currentObject.GetHashCode() : 0));
+              (current * MULTIPLIER) + (currentObject != null ? currentObject.GetHashCode() : 0));
         }
 
         return hash;
@@ -183,9 +183,7 @@ namespace Assets.Scripts.Base {
   }
 
   public class EmptyEnumerator : IEnumerator {
-    public object Current {
-      get { throw new UnreachableCodeException(); }
-    }
+    public object Current => throw new UnreachableCodeException();
 
     public bool MoveNext() {
       return false;

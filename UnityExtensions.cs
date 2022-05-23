@@ -114,10 +114,11 @@ namespace Assets.Scripts.UnityBase {
     }
 
     public static void SetSize(this RectTransform trans, Vector2 newSize) {
-      Vector2 oldSize = trans.rect.size;
-      Vector2 deltaSize = newSize - oldSize;
-      trans.offsetMin -= new Vector2(deltaSize.x * trans.pivot.x, deltaSize.y * trans.pivot.y);
-      trans.offsetMax += new Vector2(deltaSize.x * (1f - trans.pivot.x), deltaSize.y * (1f - trans.pivot.y));
+      var oldSize = trans.rect.size;
+      var deltaSize = newSize - oldSize;
+      var pivot = trans.pivot;
+      trans.offsetMin -= new Vector2(deltaSize.x * pivot.x, deltaSize.y * pivot.y);
+      trans.offsetMax += new Vector2(deltaSize.x * (1f - pivot.x), deltaSize.y * (1f - pivot.y));
     }
 
     /**

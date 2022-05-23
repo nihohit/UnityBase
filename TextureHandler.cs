@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Assets.Scripts.UnityBase {
   #region ITextureHandler
 
-  public interface ITextureHandler<T> {
+  public interface ITextureHandler<in T> {
     void UpdateMarkerTexture(T item, SpriteRenderer renderer);
 
     Texture2D GetTexture(T ent);
@@ -24,9 +24,10 @@ namespace Assets.Scripts.UnityBase {
   public class TextureHandler {
 
     public void UpdateTexture(string itemName, SpriteRenderer renderer, string resourceFolder) {
-      if (!_textureDict.TryGetValue(itemName, out var newTexture)) {
+      if (!textureDict.TryGetValue(itemName, out var newTexture)) {
         newTexture = Resources.Load<Texture2D>($"{resourceFolder}/{itemName}");
-        _textureDict[itemName] = newTexture ?? throw new System.Exception($"Can't find texture {resourceFolder}/{itemName}");
+        Assert.NotNull(newTexture, $"Can't find texture {resourceFolder}/{itemName}");
+        textureDict[itemName] = newTexture;
       }
       ReplaceTexture(renderer, newTexture);
     }
@@ -40,9 +41,9 @@ namespace Assets.Scripts.UnityBase {
     }
 
     public void UpdateTexture(string itemName, Image image, string resourceFolder) {
-      if (!_textureDict.TryGetValue(itemName, out var newTexture)) {
+      if (!textureDict.TryGetValue(itemName, out var newTexture)) {
         newTexture = Resources.Load<Texture2D>($"{resourceFolder}/{itemName}");
-        _textureDict[itemName] = newTexture;
+        textureDict[itemName] = newTexture;
       }
       ReplaceTexture(image, newTexture);
     }
@@ -56,7 +57,7 @@ namespace Assets.Scripts.UnityBase {
       image.sprite = sprite;
     }
 
-    private readonly Dictionary<string, Texture2D> _textureDict = new();
+    private readonly Dictionary<string, Texture2D> textureDict = new();
   }
 
   #endregion
