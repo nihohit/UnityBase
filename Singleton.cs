@@ -50,7 +50,7 @@ namespace Assets.Scripts.Base {
           }
 
           // Binding flags exclude public and static constructors.
-          ConstructorInfo constructor = typeof(T).GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[0], null);
+          ConstructorInfo constructor = typeof(T).GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, Type.EmptyTypes, null);
 
           // Also exclude internal constructors.
           if (constructor == null || constructor.IsAssembly) {
